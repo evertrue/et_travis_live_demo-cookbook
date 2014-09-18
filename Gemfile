@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
+group :test, :development do
+  gem 'rake'
+  gem 'travis', '~> 1.7'
+end
 
-# Uncomment these lines if you want to live on the Edge:
-#
-# group :development do
-#   gem "berkshelf", github: "berkshelf/berkshelf"
-#   gem "vagrant", github: "mitchellh/vagrant", tag: "v1.6.3"
-# end
-#
-# group :plugins do
-#   gem "vagrant-berkshelf", github: "berkshelf/vagrant-berkshelf"
-#   gem "vagrant-omnibus", github: "schisamo/vagrant-omnibus"
-# end
+group :test do
+  gem 'berkshelf',  '~> 3.1'
+  gem 'chefspec',   '~> 4.0'
+end
 
-gem 'test-kitchen'
-gem 'kitchen-vagrant'
+group :test, :integration do
+  gem 'test-kitchen', '~> 1.2'
+  gem 'kitchen-ec2',
+      github: 'test-kitchen/kitchen-ec2',
+      ref: 'e7f840f927518b0f9e29914205c048a463de654e'
+end
